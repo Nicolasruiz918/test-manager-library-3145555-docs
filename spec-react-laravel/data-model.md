@@ -117,9 +117,11 @@ All timestamps use `timestamptz`. No generic audit columns (`created_at`, `updat
 
 ## 4. Constraints and indexes: where each rule lives
 
-The following inventory retains the baseline objects and classifications. No additional `CHECK`, index or named constraint is introduced.
+The following inventory retains the baseline objects. The two checks explicitly assigned to T-18
+are now applied and verified by direct psql rejection tests; no other check, index or named
+constraint has been added. All six tables and thirty columns remain unchanged.
 
-| Rule | Object | Baseline classification |
+| Rule | Object | Baseline / observed implementation classification |
 |---|---|---|
 | Primary keys on all six tables | `PK_*` | **engine** |
 | Unique `category.name` | Unique index | **engine** |
@@ -132,9 +134,9 @@ The following inventory retains the baseline objects and classifications. No add
 | `loan_item.loan_id` → `loan.id` CASCADE | FK | **engine** |
 | `loan_item.book_id` → `book.id` RESTRICT | FK | **engine** |
 | `0 <= available_copies <= total_copies` | `ck_book_available_range` | **engine**; protects the numerical range |
-| `total_copies >= 1` | `ck_book_total_positive` | **pending (T-18)**; domain validation required beforehand |
+| `total_copies >= 1` | `ck_book_total_positive` | **engine, verified T-18**; originally pending; domain validation retained |
 | Unique `(loan_id, book_id)` | Unique index | **engine** |
-| `role` in (`admin`, `librarian`) | `ck_user_role` | **pending (T-18)**; domain validation required beforehand |
+| `role` in (`admin`, `librarian`) | `ck_user_role` | **engine, verified T-18**; originally pending; domain validation retained |
 | At most three unreturned books per member | — | **domain only**; not a row-level `CHECK` |
 | A member with overdue items cannot borrow | — | **domain only** |
 | Decrementing a copy and creating its loan item form one operation | — | **domain only**; one transaction |

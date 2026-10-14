@@ -84,3 +84,13 @@ That is a **proposal to resolve the demonstration gap**, not an adopted environm
 Skeleton and health → initial migration and category seed → domain → use cases with fakes → adapters → API → contract and concurrency tests.
 
 The original numbered work, dependencies, evidence and completion definition remain in [tasks.md](tasks.md). The audit notes identify where the original dependency graph or wording needs clarification; this plan does not silently rewrite that graph or add gates. The README's six forks, small incremental commits, delivery deadline and SDD evaluation focus remain authoritative.
+
+## Implementation record — T-01
+
+The owner has now authorized implementation and direct commits to `main` in each of the six forks. Use the existing task identifier in each new commit subject (`T-01: ...`, `T-02: ...`) and verify its evidence before describing a task as complete. Synchronize with `origin/main` using a fast-forward-only pull before a new task; never force-push to reconcile concurrent work. This workflow changes no task, acceptance criterion or database object.
+
+T-01 selects PHP 8.5, Laravel 13, Composer 2 and PHPUnit 12. The resolved versions belong in the API's Composer lockfile. Laravel 13 supports PHP 8.3–8.5 according to its [official release notes](https://laravel.com/docs/13.x/releases). These are implementation choices, not requirements retroactively attributed to the examination.
+
+The health endpoint goes through Laravel's HTTP kernel. `/api/v1/health` is the contract path; `/health` is the operational alias explicitly required by T-01. Health requires neither authentication nor business tables. The designated composition point is `app/Providers/LibraryServiceProvider.php`. Real request tests and a running-container health check provide T-01 evidence in the API repository; a test comparing only a JSON literal is insufficient.
+
+This record starts implementation; it does not mark any task complete or adopt the remaining audit proposals. Decisions for migrations, concurrency, covers and demonstration time must be recorded with the relevant existing task before that behavior is implemented.

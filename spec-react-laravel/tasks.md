@@ -73,3 +73,12 @@ These are proposed ways to verify the baseline, not executed results or addition
 Before implementation, reconcile the proposed resolutions against the root README, both reference versions, the unchanged business schema and the original HTTP contract. A resolution is acceptable only if it explains how to satisfy an existing requirement without narrowing or expanding the product.
 
 Record any remaining decision explicitly instead of presenting an assumption as a confirmed defect or an approved requirement. This file supplies no application code, migration, seed SQL or database-write instruction. All implementation evidence remains pending.
+
+## Executed implementation evidence
+
+The baseline table above remains unchanged. Completion is tracked separately and only when the corresponding execution exists.
+
+| Task | Evidence | Status |
+|---|---|---|
+| T-01 | [API commit 92d121d](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/commit/92d121d5c08283b163878e5fd885ac8868becff2), including `evidence/T-01.md`: healthy container, two real HTTP 200 responses, three passing Laravel tests | Verified and published on `main` |
+| T-02–T-23 | No completion claimed in this record | Pending |

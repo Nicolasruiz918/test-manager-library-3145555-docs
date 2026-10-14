@@ -94,3 +94,11 @@ T-01 selects PHP 8.5, Laravel 13, Composer 2 and PHPUnit 12. The resolved versio
 The health endpoint goes through Laravel's HTTP kernel. `/api/v1/health` is the contract path; `/health` is the operational alias explicitly required by T-01. Health requires neither authentication nor business tables. The designated composition point is `app/Providers/LibraryServiceProvider.php`. Real request tests and a running-container health check provide T-01 evidence in the API repository; a test comparing only a JSON literal is insufficient.
 
 This record starts implementation; it does not mark any task complete or adopt the remaining audit proposals. Decisions for migrations, concurrency, covers and demonstration time must be recorded with the relevant existing task before that behavior is implemented.
+
+## Implementation record — T-02
+
+Preserve exactly the six tables and thirty columns in `library`; do not create Laravel's default migration, session, cache, job or token tables. To satisfy both Laravel migration ownership and the owner's no-additional-entities rule, implement `MigrationRepositoryInterface` with migration names and batch numbers in a namespaced JSON **comment on the existing `library` schema**. A schema comment creates no table, column, index, constraint or business entity. Do not put secrets in this metadata.
+
+The supported command is `php artisan library:migrate`. It runs Laravel's migrator, its DDL, fixed category seed and repository updates in one PostgreSQL transaction under an advisory transaction lock. Repeated startup must find the recorded migrations and do nothing. A failure must roll back both DDL and bookkeeping; malformed or unrelated existing metadata must fail explicitly. This resolves the bookkeeping gap from ADR-001 without introducing a technical table. The migration command creates `library` only when explicitly run; infrastructure still starts an empty engine.
+
+T-02 includes only the initial model's engine constraints. The two additional checks explicitly assigned to T-18 stay pending until that task. Tests use a dedicated disposable PostgreSQL 16 instance and inspect tables, columns, defaults, widths, nullability, foreign keys, indexes and exact seed values against `data-model.md`. They do not modify a pre-existing application database.

@@ -86,4 +86,6 @@ The baseline table above remains unchanged. Completion is tracked separately and
 | T-04 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-04.md): 7 inventory tests | Verified and published on `main` |
 | T-05 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-05.md): 6 loan tests; combined domain suite 29 tests / 61 assertions | Verified and published on `main` |
 | T-06–T-11 | [API evidence directory](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/tree/main/evidence), one file and commit per task. Complete unit/application suite: 52 tests / 149 assertions; includes HU-05 and HU-08 | Verified |
-| T-12–T-23 | No completion claimed in this record | Pending |
+| T-12–T-16 | [API evidence directory](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/tree/main/evidence): real PostgreSQL, concurrent processes, all routes and all fourteen business codes; live HTTP 201/409 and multipart PUT; 80 tests / 958 assertions | Verified and published on `main` |
+| T-17 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-17.md): empty-database installation, idempotent admin provisioning and HTTP login; complete suite 83 tests / 974 assertions | Verified; core complete |
+| T-18–T-23 | No completion claimed in this record | Pending |

@@ -120,3 +120,23 @@ PostgreSQL adapters use parameterized Laravel queries, explicit six-table column
 Member row locks coordinate eligibility checks and returns. All book updates use the same optimistic comparison, with stable book-id write order for multi-item loans. A conflict rolls back the complete operation and reruns its reads and business validation. A concurrent duplicate return is recognized by its reread item state; distinct items of the same book both restore inventory. Retry version/deadlock/serialization conflicts at most five times, then use a temporary technical failure rather than inventing a false business conflict. This bounded retry choice changes no business error or schema object.
 
 HTTP technical gaps are resolved separately from the fourteen existing business codes: missing/invalid tokens reuse INVALID_CREDENTIALS; unexpected failures use 500 INTERNAL_ERROR, retry exhaustion uses 503 SERVICE_UNAVAILABLE, and unsupported methods/media types use HTTP_ERROR with their HTTP status. All preserve the existing code/message/details envelope with Spanish, non-sensitive messages. These identifiers describe transport/operational failures, not new business rules or endpoints.
+
+## Implementation record — T-14 and T-15
+
+Select PHP's Argon2id password hashing (64 MiB, four passes, one thread), preserving the Python reference's choice and avoiding BCrypt's password-length truncation. Use firebase/php-jwt 7 with an HS256-only verification key, an environment-provided secret of at least 32 bytes, real-time issuance/expiry and exactly eight hours of validity. The token carries only sub, role, iat and exp. The demonstration business clock never controls authentication time. References: [PHP password hashing](https://www.php.net/manual/en/function.password-hash.php) and [JWT library](https://github.com/googleapis/php-jwt).
+
+Interpret the existing 2 MB cover limit as 2,097,152 bytes. Validate actual PNG/JPEG content, store under fresh opaque keys, and retain only the existing nullable cover_key. Commit a replacement/reference removal before deleting the previous binary; remove an uncommitted new binary after persistence failure. Disk storage is the T-15 local adapter. Production S3 remains a distinct configured adapter; local evidence does not claim an S3 deployment.
+
+PHP upload/post limits must allow the specified 3 MB test to reach the uniform 422 response. Real multipart PUT is retained and tested rather than changed to POST. Authentication and role checks occur before resource lookups. Credentials and hashes are excluded from application exception logging; database error logging must not include statement parameters containing password hashes.
+
+## Implementation record — T-17
+
+The application command `php artisan library:install` validates required environment configuration, runs the schema migration, and provisions the initial administrator under a PostgreSQL advisory transaction lock. Repeating installation with the same credentials retains the same id and hash. An existing librarian is never promoted; conflicting credentials for an existing administrator fail without silently rotating its password. No password or hash is printed. The separate `library:migrate` command remains available and infrastructure does not create business tables.
+
+Deployment supplies ADMIN_USERNAME, ADMIN_PASSWORD and JWT_SECRET; no committed default credentials are usable. The command is orchestration for the existing startup requirement, not an HTTP operation to grant administrator rights.
+
+## Implementation record — T-18 and T-19
+
+T-18 applies only the two checks already explicitly assigned by the original task: ck_book_total_positive and ck_user_role. Add them through a second Laravel migration, keeping six tables, thirty columns and no defaults. Update model section 4 only after direct PostgreSQL rejection tests pass. No other proposed schema constraints are silently added.
+
+T-19 uses the installed PHP parser to inspect resolved class references and adapter construction. Domain references may only target domain classes or PHP internal classes; application references may only target application/domain classes or PHP internals. Product adapter construction belongs only to LibraryServiceProvider. Tests inject forbidden imports and construction into in-memory source fixtures to prove the checker fails. This is the PHP equivalent of the reference import-linter/NetArchTest evidence, without running tooling for the wrong language.

@@ -81,4 +81,9 @@ The baseline table above remains unchanged. Completion is tracked separately and
 | Task | Evidence | Status |
 |---|---|---|
 | T-01 | [API commit 92d121d](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/commit/92d121d5c08283b163878e5fd885ac8868becff2), including `evidence/T-01.md`: healthy container, two real HTTP 200 responses, three passing Laravel tests | Verified and published on `main` |
-| T-02–T-23 | No completion claimed in this record | Pending |
+| T-02 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-02.md): real PostgreSQL, exact schema, repeatable migration and rollback, 7 tests / 65 assertions including health | Verified and published on `main` |
+| T-03 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-03.md): 16 value-object tests / 22 assertions | Verified and published on `main` |
+| T-04 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-04.md): 7 inventory tests | Verified and published on `main` |
+| T-05 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-05.md): 6 loan tests; combined domain suite 29 tests / 61 assertions | Verified and published on `main` |
+| T-06–T-11 | [API evidence directory](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/tree/main/evidence), one file and commit per task. Complete unit/application suite: 52 tests / 149 assertions; includes HU-05 and HU-08 | Verified |
+| T-12–T-23 | No completion claimed in this record | Pending |

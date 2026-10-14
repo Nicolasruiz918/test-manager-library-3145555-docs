@@ -72,7 +72,7 @@ These are proposed ways to verify the baseline, not executed results or addition
 
 Before implementation, reconcile the proposed resolutions against the root README, both reference versions, the unchanged business schema and the original HTTP contract. A resolution is acceptable only if it explains how to satisfy an existing requirement without narrowing or expanding the product.
 
-Record any remaining decision explicitly instead of presenting an assumption as a confirmed defect or an approved requirement. This file supplies no application code, migration, seed SQL or database-write instruction. All implementation evidence remains pending.
+Record any remaining decision explicitly instead of presenting an assumption as a confirmed defect or an approved requirement. This file supplies no application code, migration, seed SQL or database-write instruction. The initial pending state is superseded only by the executed evidence below.
 
 ## Executed implementation evidence
 
@@ -88,4 +88,23 @@ The baseline table above remains unchanged. Completion is tracked separately and
 | T-06–T-11 | [API evidence directory](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/tree/main/evidence), one file and commit per task. Complete unit/application suite: 52 tests / 149 assertions; includes HU-05 and HU-08 | Verified |
 | T-12–T-16 | [API evidence directory](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/tree/main/evidence): real PostgreSQL, concurrent processes, all routes and all fourteen business codes; live HTTP 201/409 and multipart PUT; 80 tests / 958 assertions | Verified and published on `main` |
 | T-17 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-17.md): empty-database installation, idempotent admin provisioning and HTTP login; complete suite 83 tests / 974 assertions | Verified; core complete |
-| T-18–T-23 | No completion claimed in this record | Pending |
+| T-18 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-18.md): both assigned CHECK violations rejected directly by PostgreSQL; six tables, thirty columns and no defaults retained | Verified |
+| T-19 | [API evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-api/blob/main/evidence/T-19.md): PHP architecture contracts and deliberate forbidden-import/construction fixtures, 5 tests / 7 assertions | Verified |
+| T-20 | [Infrastructure evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-infra/blob/main/evidence/T-20.md): one-command stack, zero application tables before migrations, HTTPS chain/hostname verification and healthy services | Verified |
+| T-21 | [Tool evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-tool/blob/main/evidence/T-21.md): API-only 40 books / 10 members / 15 loans / 3 overdue lines; real clock restored; 5,000-book HTTPS searches measured 33.13–53.09 ms | Verified |
+| T-22 | [React evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-app/blob/main/evidence/T-22.md): real admin/librarian journey, catalog, covers, members, loan/return, overdue/report, mobile layout; 2 browser tests passed | Verified |
+| T-23 | [Public-page evidence](https://github.com/Nicolasruiz918/test-manager-library-3145555-page/blob/main/evidence/T-23.md): static page rendered on desktop/mobile with API requests blocked; 1 browser test passed | Verified |
+
+The final backend regression on 2026-10-14 passed **90 tests / 988 assertions**.
+Execution times, commands and limits belong to the linked evidence, not to a new
+evaluation definition. The runtime is a local evaluation deployment with disk
+covers and a private CA. A production S3 adapter/deployment and public-domain
+certificate have not been validated or claimed. The original README deadline
+remains unchanged; these records do not claim late commits met that deadline.
+
+Final read-only inspection of the running application found six tables, thirty
+columns, zero defaults, zero inventory/pending-item mismatches and zero members
+above the three-item limit. After browser tests and the benchmark, the API
+reported 5,000 active books, 11 members, 16 loans, three overdue lines and 16
+report rows at 20:14:01 UTC. The additional member and closed loan are retained
+browser-test records, not new business entities or SQL-seeded data.

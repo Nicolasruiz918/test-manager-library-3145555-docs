@@ -1,5 +1,7 @@
 # API Contract — Manager Library
 
+**Implementation status (2026-10-14):** the baseline and original audit findings below are preserved. The implementation records at the end of [plan.md](plan.md) adopt the relevant resolutions; [tasks.md](tasks.md#executed-implementation-evidence) links executed results. Historical wording such as proposed or pending in the audit is not the current completion register.
+
 The HTTP contract is **language independent**: React + Laravel must respect it just as a Python or .NET implementation would.
 Operation behavior is defined in [`spec.md`](spec.md); stored data is defined in [`data-model.md`](data-model.md).
 

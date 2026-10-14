@@ -1,5 +1,7 @@
 # ADR-004 · The database aggregates reports using snapshot values
 
+**Implementation status (2026-10-14):** the historical audit proposals below remain separate from evaluator requirements. Adopted decisions are recorded in [the plan](../plan.md#implementation-record--t-12-and-t-13); actual results are linked in [the task register](../tasks.md#executed-implementation-evidence). The implementation uses schema-comment migration history, ephemeral book xmin, member coordination, atomic returns, logical deletion and frozen report aggregation. No new physical entity or business field was added.
+
 - **Status:** accepted in the baseline; translated for React/Laravel. Proposed clarifications below are not implementation evidence or evaluator approval.
 - **Source:** [baseline ADR-004](../../spec-.net/adr/adr-004-reporte-agregado-y-congelado.md), [HU-10](../../spec-.net/spec.md#hu-10--reporte-de-libros-más-prestados) and [baseline HTTP report](../../spec-.net/api-contract.md#37-reporte).
 - **Context:** the most-borrowed report joins loans and items over a date range. Reading titles or categories from the current catalog would change historical labels after an edit.

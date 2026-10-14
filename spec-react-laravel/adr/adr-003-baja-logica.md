@@ -1,5 +1,7 @@
 # ADR-003 · Books are logically deleted, not physically removed
 
+**Implementation status (2026-10-14):** the historical audit proposals below remain separate from evaluator requirements. Adopted decisions are recorded in [the plan](../plan.md#implementation-record--t-12-and-t-13); actual results are linked in [the task register](../tasks.md#executed-implementation-evidence). The implementation uses schema-comment migration history, ephemeral book xmin, member coordination, atomic returns, logical deletion and frozen report aggregation. No new physical entity or business field was added.
+
 - **Status:** accepted in the baseline; translated for React/Laravel. Audit proposals below are not implementation evidence or evaluator approval.
 - **Source:** [baseline ADR-003](../../spec-.net/adr/adr-003-baja-logica.md), [CA-03.5 and CA-04.3](../../spec-.net/spec.md).
 - **Context:** a loan item references a book. Physically deleting referenced catalog data can damage the history and reports.

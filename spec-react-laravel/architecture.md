@@ -1,6 +1,6 @@
 # Architecture — Manager Library (React + Laravel)
 
-**Hexagonal architecture** (ports and adapters), translated from the [.NET reference](../spec-.net/architecture.md) to the stack required by the [base README](../README.md). The dependency rules remain articles I–III of [constitution.md](constitution.md). These documents specify work to implement; they do not describe an existing application.
+**Hexagonal architecture** (ports and adapters), translated from the [.NET reference](../spec-.net/architecture.md) to the stack required by the [base README](../README.md). The dependency rules remain articles I–III of [constitution.md](constitution.md). The original design and audit are preserved below; [plan.md](plan.md)'s implementation records identify adopted resolutions and [tasks.md](tasks.md) links executed evidence.
 
 Documentation is in English as requested for this adaptation. The original requirement for Spanish user-facing messages remains unchanged. Business rules, the six-table model and HTTP operations remain those of [spec.md](spec.md), [data-model.md](data-model.md) and [api-contract.md](api-contract.md).
 
@@ -16,7 +16,7 @@ flowchart LR
       DOM["Domain<br/>aggregates and value objects"]
     end
     subgraph Outbound
-      DB["Adapters/Outbound/Persistence<br/>Eloquent and Laravel migrations"]
+      DB["Adapters/Outbound/Persistence<br/>Laravel queries and migrations"]
       STO["Adapters/Outbound/Storage<br/>covers"]
       SEC["Adapters/Outbound/Security<br/>password hashing and JWT"]
     end
@@ -26,9 +26,9 @@ flowchart LR
     SEC -. implements ports .-> APP
 ```
 
-Dependencies point inward. The proposed Laravel composition location is `app/Providers/LibraryServiceProvider.php`: it binds application ports to adapters. Framework routing and bootstrapping remain framework integration, not an alternative location for business rules.
+Dependencies point inward. The adopted Laravel composition location is `app/Providers/LibraryServiceProvider.php`: it binds application ports to adapters. Framework routing and bootstrapping remain framework integration, not an alternative location for business rules.
 
-The domain uses standard PHP types, including `DateTimeImmutable`. It does not import Illuminate, Eloquent, Carbon, application services or adapters. The application owns its ports; their signatures do not expose Laravel requests, ORM models or database connections. Eloquent models represent persistence rows and map to domain objects rather than becoming domain entities.
+The domain uses standard PHP types, including `DateTimeImmutable`. It does not import Illuminate, Eloquent, Carbon, application services or adapters. The application owns its ports; their signatures do not expose Laravel requests, ORM models or database connections. The implementation selects parameterized Laravel query-builder adapters and explicit row-to-domain mapping rather than generating Eloquent business entities. This is within the plan's Eloquent/SQL persistence choice.
 
 ## 2. Folder structure
 

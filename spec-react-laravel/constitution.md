@@ -7,7 +7,7 @@ This folder documents the same product as [spec-.net](../spec-.net/) and [spec-p
 - Preserve the original eight main Markdown files and four ADR files, their responsibilities, and the six project repositories.
 - Preserve all actors, stories, acceptance criteria, business rules, exclusions, API operations, business error codes and the physical business model. Do not add entities, columns, indexes or constraints as an undocumented correction.
 - Preserve T-01 through T-23, their baseline dependencies, evidence and definition of the core. Findings about that plan appear separately; they are not new evaluation tasks or requirements.
-- This is documentation work only. No application code, migrations, database writes, seed inserts or deployment are created or executed here. Complete and reconcile the documentation before implementation begins.
+- Documentation preceded implementation. This repository contains specifications and evidence links only; application code, migrations and deployment remain in their designated sibling repositories. The owner subsequently authorized implementation and direct task commits to main, as recorded in [plan.md](plan.md).
 - Write the new documentation in **English**, as explicitly instructed by the project owner. This is a documented exception to the reference's documentation-language rule. It does not translate fixed category data or change the original requirement for Spanish user-facing messages.
 
 Each document separates its **preserved baseline** from **audit findings and proposed resolutions**. A proposed technical solution explains how an existing requirement could be met; it is not evidence of implementation or permission to change the product. A decision that would change a stated schema or contract requirement must not be adopted silently.
@@ -84,7 +84,7 @@ Code, columns and routes remain English. User-facing messages remain Spanish, as
 
 ## Article XII — Nothing is complete without evidence
 
-A task in [tasks.md](tasks.md) is complete when its evidence exists and can be executed, not merely when code has been written. All implementation tasks remain pending. This folder does not claim migrations, tests or deployments have passed.
+A task in [tasks.md](tasks.md) is complete when its evidence exists and can be executed, not merely when code has been written. The original state was pending. The separate executed-evidence register now links actual results from each repository; a proposal alone still proves no result.
 
 The original definition of the core at T-17 and the distinction of T-18 through T-23 are retained. No new scoring system, deadline, mandatory screen or implementation milestone is introduced.
 
@@ -101,4 +101,4 @@ The sources below refer to available documents, not an inspected application or 
 | C-05 / Implementation trap | Source T-05 mentions a fake `Clock`, while article I prohibits domain dependencies on application | Pass an explicit instant into domain behavior. Test time-dependent behavior without importing the application port into domain |
 | C-06 / Framework trap | Laravel defaults can introduce persistence dependencies into domain entities or framework types into ports | Keep the same dependency direction while adapting the framework boundary. Eloquent models belong to persistence adapters, not automatically to the business domain |
 
-The audit identifies risks in documentation. It does not establish that the traps were deliberate, that code already contains them, or that implementation has started.
+The original audit identifies risks in documentation; it does not establish that traps were deliberate or that code contains them. Subsequent implementation choices and evidence are recorded separately in the plan and task register.

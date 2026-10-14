@@ -1,5 +1,7 @@
 # Specification — Manager Library (React + Laravel)
 
+**Implementation status (2026-10-14):** the baseline and original audit findings below are preserved. The implementation records at the end of [plan.md](plan.md) adopt the relevant resolutions; [tasks.md](tasks.md#executed-implementation-evidence) links executed results. Historical wording such as proposed or pending in the audit is not the current completion register.
+
 **What is being built and why.** A system for a small library to manage its book catalog, members and loans, and see which books are borrowed most often.
 
 This document preserves the product and requirement identifiers from [the .NET reference](../spec-.net/spec.md) and [the Python reference](../spec-python/spec.md). React and PHP/Laravel are required by the [root README](../README.md). No new business feature is introduced. It follows [constitution.md](constitution.md); the physical model belongs in [data-model.md](data-model.md), and HTTP representations belong in [api-contract.md](api-contract.md).

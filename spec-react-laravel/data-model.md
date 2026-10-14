@@ -1,10 +1,12 @@
 # Data model — Manager Library (React and Laravel)
 
+**Implementation status (2026-10-14):** the baseline and original audit findings below are preserved. The implementation records at the end of [plan.md](plan.md) adopt the relevant resolutions; [tasks.md](tasks.md#executed-implementation-evidence) links executed results. Historical wording such as proposed or pending in the audit is not the current completion register.
+
 This document translates the [baseline data model](../spec-.net/data-model.md) for the React/PHP Laravel stack required by the [repository README](../README.md). The baseline business schema is preserved: **six tables, thirty columns, the same types, nullability, foreign keys, constraints, indexes and fixed category data**. No implementation or executed database is asserted.
 
 - Reference database: PostgreSQL 16. Business schema: `library`. Server time zone: UTC.
 - Business requirements remain in [spec.md](spec.md); principles in [constitution.md](constitution.md); HTTP representations in [api-contract.md](api-contract.md).
-- Baseline labels are retained: **engine**, **domain only**, and **pending (T-xx)**. Here, **engine** identifies the required database guarantee, not evidence that it has already been implemented. All implementation evidence remains pending until produced.
+- Baseline labels are retained: **engine**, **domain only**, and **pending (T-xx)**. Here, **engine** identifies the required database guarantee. Executed verification is separately recorded in tasks.md; section 4 labels the two originally pending T-18 checks as verified after their migration and direct PostgreSQL evidence.
 - The final audit register distinguishes preserved requirements from proposed resolutions. Proposals do not silently add columns, constraints, indexes, tables or API behavior.
 
 ## 0. Naming conventions

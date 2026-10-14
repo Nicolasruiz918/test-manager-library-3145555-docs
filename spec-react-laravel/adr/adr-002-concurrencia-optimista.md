@@ -1,5 +1,7 @@
 # ADR-002 · Optimistic concurrency for book copies
 
+**Implementation status (2026-10-14):** the historical audit proposals below remain separate from evaluator requirements. Adopted decisions are recorded in [the plan](../plan.md#implementation-record--t-12-and-t-13); actual results are linked in [the task register](../tasks.md#executed-implementation-evidence). The implementation uses schema-comment migration history, ephemeral book xmin, member coordination, atomic returns, logical deletion and frozen report aggregation. No new physical entity or business field was added.
+
 - **Status:** accepted in the baseline; technology translated to Laravel/PostgreSQL. The audit proposals below have not been declared implemented or approved by the evaluator.
 - **Source:** [baseline ADR-002](../../spec-.net/adr/adr-002-concurrencia-optimista.md), [HU-06/HU-07 and RNF-2](../../spec-.net/spec.md).
 - **Context:** two operators can attempt to lend the last available copy simultaneously. Both must not confirm a loan for that single copy.

@@ -1,5 +1,7 @@
 # ADR-001 · The application migrations own the schema
 
+**Implementation status (2026-10-14):** the historical audit proposals below remain separate from evaluator requirements. Adopted decisions are recorded in [the plan](../plan.md#implementation-record--t-12-and-t-13); actual results are linked in [the task register](../tasks.md#executed-implementation-evidence). The implementation uses schema-comment migration history, ephemeral book xmin, member coordination, atomic returns, logical deletion and frozen report aggregation. No new physical entity or business field was added.
+
 - **Status:** accepted in the baseline; translated to Laravel. Additional audit resolutions below remain proposals, not evaluator approval or implementation evidence.
 - **Source:** [baseline ADR-001](../../spec-.net/adr/adr-001-propiedad-del-esquema.md), [constitution V](../constitution.md) and the [README](../../README.md).
 - **Context:** `infra` starts a database engine. Putting business DDL both in container startup scripts and application migrations creates competing schema owners.
